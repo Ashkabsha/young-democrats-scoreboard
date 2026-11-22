@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YOUNG DEMOCRATS — Break the Silence, Loud Democracy</title>
+  <style>
+    :root {
+      --yd-red: #E61E25;
+      --yd-red-dark: #B91319;
+      --yd-green: #009E60;
+      --yd-green-dark: #007A4A;
+      --yd-white: #FFFFFF;
+      --yd-ink: #111827;
+      --yd-muted: #64748B;
+      --yd-bg: #F8FAFC;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--yd-bg);
+      color: var(--yd-ink);
+      padding-bottom: 3rem;
+    }
+
+    /* Hero Banner Inspired by the Diagonal Flag */
+    .hero {
+      position: relative;
+      background: linear-gradient(155deg, var(--yd-white) 0%, var(--yd-white) 46%, var(--yd-red) 46.3%, var(--yd-red-dark) 100%);
+      padding: 2.25rem 1.25rem 4rem;
+      border-bottom: 5px solid var(--yd-green);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .hero-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Crisp Built-in Flag SVG */
+    .flag-frame {
+      width: 150px;
+      height: 92px;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+      border: 2px solid var(--yd-white);
+      background: var(--yd-white);
+      margin-bottom: 1.1rem;
+    }
+
+    .motto-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--yd-green);
+      color: var(--yd-white);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(0, 158, 96, 0.35);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 {
+      font-size: 2.3rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      color: var(--yd-white);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 0.4rem;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Main Content Container */
+    .container {
+      max-width: 800px;
+      margin: -2.4rem auto 0;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Summary Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .stat-card {
+      background: var(--yd-white);
+      border-radius: 12px;
+      padding: 1.15rem 1.35rem;
+      box-shadow: 0 6px 20px rgba(17, 24, 39, 0.08);
+      border-left: 5px solid var(--yd-red);
+    }
+
+    .stat-card.green {
+      border-left-color: var(--yd-green);
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--yd-muted);
+    }
+
+    .stat-value {
+      font-size: 1.9rem;
+      font-weight: 900;
+      color: var(--yd-ink);
+      margin-top: 0.15rem;
+    }
+
+    .stat-sub {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--yd-green);
+      margin-top: 0.15rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Scoreboard Table */
+    .scoreboard {
+      background: var(--yd-white);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      border: 1px solid #E2E8F0;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 64px 1fr 115px;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid #F1F5F9;
+      transition: background 0.15s ease;
+    }
+
+    .row:last-child {
+      border-bottom: none;
+    }
+
+    .row:hover {
+      background: #FFF5F5;
+    }
+
+    .row.rank-first {
+      background: linear-gradient(90deg, rgba(0, 158, 96, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+
+    .header-row {
+      background: var(--yd-ink);
+      color: var(--yd-white);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: none;
+    }
+
+    .header-row:hover {
+      background: var(--yd-ink);
+    }
+
+    .rank {
+      font-weight: 800;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .badge {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--yd-white);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .badge-1 {
+      background: var(--yd-green);
+      box-shadow: 0 3px 10px rgba(0, 158, 96, 0.4);
+    }
+
+    .badge-2 {
+      background: var(--yd-red);
+    }
+
+    .badge-3 {
+      background: #1E293B;
+    }
+
+    .committee-name {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--yd-ink);
+    }
+
+    .progress-wrap {
+      width: 100%;
+      height: 7px;
+      background: #E2E8F0;
+      border-radius: 999px;
+      margin-top: 6px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--yd-red), var(--yd-green));
+      border-radius: 999px;
+      transition: width 0.6s ease;
+    }
+
+    .count {
+      text-align: right;
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: var(--yd-red);
+    }
+
+    .rank-first .count {
+      color: var(--yd-green);
+    }
+
+    .status {
+      text-align: center;
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      color: var(--yd-muted);
+      font-weight: 500;
+    }
+
+    .live-dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      background: var(--yd-green);
+      border-radius: 50%;
+      margin-right: 6px;
+      box-shadow: 0 0 0 3px rgba(0, 158, 96, 0.2);
+    }
+
+    .error {
+      padding: 2rem;
+      text-align: center;
+      color: var(--yd-red);
+      font-weight: 600;
+    }
+
+    @media (max-width: 540px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.75rem; }
+      .row { grid-template-columns: 50px 1fr 95px; padding: 0.85rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <!-- Vector Flag Matching Official Design -->
+      <div class="flag-frame" aria-label="Young Democrats Flag">
+        <svg viewBox="0 0 300 185" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <!-- Upper White Triangle -->
+          <polygon points="0,0 300,0 300,185" fill="#FFFFFF" />
+          <!-- Lower Red Triangle -->
+          <polygon points="0,0 0,185 300,185" fill="#E61E25" />
+          <!-- Emerald Green 5-Point Star -->
+          <polygon points="228,22 235,43 257,43 239,56 246,77 228,64 210,77 217,56 199,43 221,43" fill="#009E60" />
+          <!-- Flag Text -->
+          <text x="16" y="146" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="18" letter-spacing="1">YOUNG</text>
+          <text x="16" y="168" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="18" letter-spacing="1">DEMOCRATS</text>
+        </svg>
+      </div>
+
+      <div class="motto-pill">
+        <span>★</span>
+        <span>Break the Silence, Loud Democracy</span>
+        <span>★</span>
+      </div>
+
+      <h1>YOUNG DEMOCRATS</h1>
+      <p>Membership Campaign — 13 Assembly Committees Scoreboard</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Memberships</div>
+        <div class="stat-value" id="total-count">—</div>
+        <div class="stat-sub" style="color: var(--yd-red);">13 Assembly Committees</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Leading Committee</div>
+        <div class="stat-value" id="leader-count">—</div>
+        <div class="stat-sub" id="leader-name">Syncing live data...</div>
+      </div>
+    </div>
+
+    <div class="scoreboard">
+      <div class="row header-row">
+        <div>Rank</div>
+        <div>Assembly Committee</div>
+        <div style="text-align: right;">Members</div>
+      </div>
+      <div id="board-body">
+        <div class="row">
+          <div style="grid-column: 1 / -1; text-align:center; color:#64748B; padding: 1.5rem 0;">
+            Loading live campaign numbers...
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="status">
+      <span class="live-dot"></span>
+      <span id="last-updated">Connecting to Google Sheets...</span>
+    </div>
+  </main>
+
+  <script>
+    // PASTE YOUR PUBLISHED GOOGLE SHEET CSV LINK BELOW
+    const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_-tlrdQlJVk7EAa09PmgqDKVwp2yYcq7e8TykIY76dA8ZFT-qgG2x6deXppicO19DI2q3qi4LmAxz/pub?gid=0&single=true&output=csv";
+
+    function parseCSVRow(row) {
+      const result = [];
+      let current = "";
+      let inQuotes = false;
+
+      for (let i = 0; i < row.length; i++) {
+        const char = row[i];
+        if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === "," && !inQuotes) {
+          result.push(current.trim());
+          current = "";
+        } else {
+          current += char;
+        }
+      }
+      result.push(current.trim());
+      return result;
+    }
+
+    async function loadScoreboard() {
+      const boardBody = document.getElementById("board-body");
+      const totalEl = document.getElementById("total-count");
+      const leaderCountEl = document.getElementById("leader-count");
+      const leaderNameEl = document.getElementById("leader-name");
+      const statusEl = document.getElementById("last-updated");
+
+      try {
+        const cacheBuster = `${SHEET_CSV_URL.includes("?") ? "&" : "?"}t=${Date.now()}`;
+        const response = await fetch(SHEET_CSV_URL + cacheBuster);
+
+        if (!response.ok) throw new Error("Failed to fetch sheet.");
+
+        const csvText = await response.text();
+        const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== "");
+
+        const data = lines.slice(1).map(line => {
+          const cols = parseCSVRow(line);
+          return {
+            committee: cols[0] || "Unknown Committee",
+            members: parseInt(cols[1]?.replace(/,/g, ""), 10) || 0
+          };
+        });
+
+        // Sort strictly in descending order of memberships
+        data.sort((a, b) => b.members - a.members);
+
+        const maxMembers = data.length > 0 ? Math.max(...data.map(d => d.members), 1) : 1;
+        const totalMembers = data.reduce((sum, item) => sum + item.members, 0);
+
+        totalEl.textContent = totalMembers.toLocaleString();
+
+        if (data.length > 0) {
+          leaderCountEl.textContent = data[0].members.toLocaleString();
+          leaderNameEl.textContent = `#1 ${data[0].committee}`;
+        }
+
+        boardBody.innerHTML = data.map((item, index) => {
+          const rank = index + 1;
+          const rankDisplay = rank <= 3
+            ? `<span class="badge badge-${rank}">${rank}</span>`
+            : `<span style="padding-left: 10px; color: #64748B;">${rank}</span>`;
+
+          const barWidth = Math.round((item.members / maxMembers) * 100);
+          const rowClass = rank === 1 ? "row rank-first" : "row";
+
+          return `
+            <div class="${rowClass}">
+              <div class="rank">${rankDisplay}</div>
+              <div>
+                <div class="committee-name">${item.committee}</div>
+                <div class="progress-wrap">
+                  <div class="progress-bar" style="width: ${barWidth}%"></div>
+                </div>
+              </div>
+              <div class="count">${item.members.toLocaleString()}</div>
+            </div>
+          `;
+        }).join("");
+
+        const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        statusEl.textContent = `Live Campaign Feed • Synced at ${now}`;
+
+      } catch (err) {
+        boardBody.innerHTML = `<div class="error">Unable to load scoreboard. Make sure your Google Sheet is published to the web as a CSV and the link is added to SHEET_CSV_URL.</div>`;
+        statusEl.textContent = "Connection error";
+        console.error(err);
+      }
+    }
+
+    loadScoreboard();
+    setInterval(loadScoreboard, 60000);
+  </script>
+</body>
+</html>
